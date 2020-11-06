@@ -7,6 +7,8 @@
 * @brief  : Parte A de la Tarea 1 
 */
 
+// Compilar con gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA.c -o ejecutable -lrt
+
 //RECORDAR PASAR TABS A ESPACIOS
 //RECORDAR PASAR TABS A ESPACIOS
 //RECORDAR PASAR TABS A ESPACIOS
@@ -19,6 +21,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <fcntl.h>
+#include <sys/shm.h>
+#include <sys/stat.h>
+#include <sys/mman.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+#include <math.h>
 
 /*! \fn sucesion_Collatz (unsigned int n)
     \brief Implimenta la susesión de Collatz
@@ -58,8 +68,8 @@ int main (int argc, char *argv[]){
         printf("Hora de ejecución: %s", ctime(&tiempo));
         exit(0); //Se termina el proceso hijo
     } else
-        wait(); //Se espera a que termine el proceso hijo
-/*
+        wait(NULL); //Se espera a que termine el proceso hijo
+
     //Se crea el segmento de memoria compartida
     shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
 
@@ -72,19 +82,23 @@ int main (int argc, char *argv[]){
         printf("Map failed\n");
         return -1;
     }
-*/
+
     pid1 = fork(); //Se reutiliza la variable pid1
     if (pid1 < 0)
         printf("Error al intentar crear el proceso hijo");
     else if (pid1 == 0){ //Proceso hijo
-        printf("numero =%d\n", n);
+        printf("Inicio en %d\n", n); //Se imprime el número inicial
         while(n > 1){
             n = sucesion_Collatz(n);
-            printf("numero =%d\n", n);
+            sprintf(ptr,"%d\n", n);
+            ptr += (int) floor(log10(n)) + 2;
+            // https://stackoverflow.com/questions/1068849/how-do-i-determine-the-number-of-digits-of-an-integer-in-c
+            //+2 porque se le suma el '\n'
         }
         exit(0); //Se termina el proceso hijo
     } else
-        wait(); //Se espera a que termine el proceso hijo
+        wait(NULL); //Se espera a que termine el proceso hijo
+        printf("%s",(char *)ptr);
     return 0;
 }
 
