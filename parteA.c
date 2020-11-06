@@ -76,7 +76,7 @@ int main (int argc, char *argv[]){
     //Se configura el tamaño de la memoria compartida
     ftruncate(shm_fd,SIZE);
 
-    //now map the shared memory segment in the address space of the process
+    //now map the shared memory segment in the address space of the process         TRADUCIR ESTO
     ptr = mmap(0,SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
     if (ptr == MAP_FAILED) {
         printf("Map failed\n");
@@ -98,7 +98,12 @@ int main (int argc, char *argv[]){
         exit(0); //Se termina el proceso hijo
     } else
         wait(NULL); //Se espera a que termine el proceso hijo
-        printf("%s",(char *)ptr);
+        printf("%s",(char *)ptr); // Se imprime leyendo desde la memoria compartida
+        //Se elimina la memoria compartida, si falla la operación, retorna -1
+        if (shm_unlink(name) == -1) {
+            printf("Error al intentar eliminar %s\n",name);
+            return -1;
+        }
     return 0;
 }
 
