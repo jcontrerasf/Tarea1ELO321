@@ -10,12 +10,20 @@ e-mail: cristian.gonzalezbu@sansano.usm.cl
 
 
 - parteA.c Corresponde al código para la parte A de la tarea.
-Compilar como: $ gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA.c -o parteA -lrt
-Ejectutar como: $ ./parteA n
+Compilar con: $ gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA.c -o parteA -lrt
+Ejectutar con: $ ./parteA n
 Donde n corresponde al número para comenzar la Conjetura de Collatz
 
 - parteA_Zombie.c Corresponde al código para la parte A de la tarea luego de agregar sleep().
-Compilar como: $ gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA_Zombie.c -o parteA_Zombie -lrt
-Ejectutar como: $ ./parteA_Zombie n &
+Compilar con: $ gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA_Zombie.c -o parteA_Zombie -lrt
+Ejectutar con: $ ./parteA_Zombie n &
 Donde n corresponde al número para comenzar la Conjetura de Collatz
 Ver procesos zombie con $ ps -l
+
+- parteB.c Corresponde al código para la parte B de la tarea.
+Compilar con: $ gcc parteB.c -lpthread -o parteB
+Ejecutar con: $ ./parteB
+
+- parteB_Modificado.c Corresponde al código para la parte B de la tarea, considerando el inciso 3.
+Compilar con: $ gcc parteB_Modificado.c -lpthread -o parteB_mod
+Ejecutar con: $ ./parteB_mod

@@ -1,13 +1,13 @@
 //! ELO321 - Teoría de Sistemas Operativos, 2020-2
 /*!
-* @file   : parteA.c 
+* @file   : parteA_Zombie.c 
 * @author : Julio Contreras Fuica
 * @author : Cristian González Bustos
-* @date   : 01/11/2020
-* @brief  : Parte A de la Tarea 1 
+* @date   : 06/11/2020
+* @brief  : Parte A de la Tarea 1, modificado según inciso 6.
 */
 
-// Compilar con gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA.c -o parteA -lrt
+// Compilar con: gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA.c -o parteA -lrt
 
 #include <time.h>
 #include <stdio.h>

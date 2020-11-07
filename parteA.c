@@ -4,7 +4,7 @@
 * @author : Julio Contreras Fuica
 * @author : Cristian González Bustos
 * @date   : 01/11/2020
-* @brief  : Parte A de la Tarea 1 
+* @brief  : Parte A de la Tarea 1.
 */
 
 // Compilar con: gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA.c -o parteA -lrt

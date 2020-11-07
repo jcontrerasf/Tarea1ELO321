@@ -1,22 +1,18 @@
 //! ELO321 - Teoría de Sistemas Operativos, 2020-2
 /*!
-* @file   : parteB.c 
+* @file   : parteB_Modificado.c 
 * @author : Julio Contreras Fuica
 * @author : Cristian González Bustos
 * @date   : 07/11/2020
-* @brief  : Parte B de la Tarea 1 
+* @brief  : Parte B de la Tarea 1, modificado según inciso 3.
 */
 
-// Compilar con: gcc parteB.c -lpthread -o parteB
+// Compilar con: gcc parteB_Modificado.c -lpthread -o parteB_mod
 
 #include <pthread.h>
 #include <stdio.h>
 
 #define n 50
-
-float avg_value;
-int min_value;
-int max_value;
 
 int numArray [n];
 
@@ -36,6 +32,11 @@ void* return_Min(void*);
 void* return_Max(void*);
 
 void main() {
+    float avg_value;
+    int min_value;
+    int max_value;
+
+
     printf("\n");
     time_t t;
     srand((unsigned) time(&t));
@@ -53,13 +54,13 @@ void main() {
     pthread_attr_t attr [3];
     
     pthread_attr_init(&attr[0]);
-    pthread_create(&threadID[0], &attr[0], return_Avg, NULL);
+    pthread_create(&threadID[0], &attr[0], return_Avg, &avg_value);
     
     pthread_attr_init(&attr[1]);
-    pthread_create(&threadID[1], &attr[1], return_Min, NULL);
+    pthread_create(&threadID[1], &attr[1], return_Min, &min_value);
     
     pthread_attr_init(&attr[2]);
-    pthread_create(&threadID[2], &attr[2], return_Max, NULL);
+    pthread_create(&threadID[2], &attr[2], return_Max, &max_value);
     
     for (i = 0; i < 3; i++)
       pthread_join(threadID[i], NULL);
@@ -72,41 +73,41 @@ void main() {
 }
 
 
-void* return_Avg(void*p)
+void* return_Avg(void *avg)
 {
-    avg_value = 0;
+    *(float*)avg = 0;
     int i;
     
     for (i = 0; i < n; i++)
-      avg_value += numArray[i];
-    avg_value /= n;
+      *(float*)avg += numArray[i];
+    *(float*)avg /= n;
     
     printf("Thread ID: %u calculó promedio.\n", pthread_self() );
     pthread_exit(0);
 }
 
-void* return_Min(void*p)
+void* return_Min(void *min)
 {
-    min_value = 100;
+    *(int*)min = 100;
     int i;
     
     for (i = 0; i < n; i++) {
-      if ( numArray[i] < min_value )
-        min_value = numArray[i];
+      if ( numArray[i] < *(int*)min )
+        *(int*)min = numArray[i];
     }
     
     printf("Thread ID: %u calculó mínimo.\n", pthread_self() );
     pthread_exit(0);
 }
 
-void* return_Max(void*p)
+void* return_Max(void *max)
 {
-    max_value = 0;
+    *(int*)max = 0;
     int i;
     
     for (i = 0; i < n; i++) {
-      if ( numArray[i] > max_value )
-        max_value = numArray[i];
+      if ( numArray[i] > *(int*)max )
+        *(int*)max = numArray[i];
     }
     
     printf("Thread ID: %u calculó máximo.\n", pthread_self() );
