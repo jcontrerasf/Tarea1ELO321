@@ -17,7 +17,7 @@ e-mail: cristian.gonzalezbu@sansano.usm.cl
 
 ## Archivos
 
-- _parteA.c_ Corresponde al código para la parte A de la tarea.
+- __parteA.c__ Corresponde al código para la parte A de la tarea.
 Compilar con:
 ```
 $ gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA.c -o parteA -lrt
@@ -28,7 +28,9 @@ $ ./parteA n
 ```
 Donde n corresponde al número para comenzar la Conjetura de Collatz
 
-- _parteA_Zombie.c_ Corresponde al código para la parte A de la tarea luego de agregar sleep().
+***
+
+- __parteA_Zombie.c__ Corresponde al código para la parte A de la tarea luego de agregar sleep().
 Compilar con:
 ```
 $ gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA_Zombie.c -o parteA_Zombie -lrt
@@ -43,7 +45,9 @@ Ver procesos zombie con
 $ ps -l
 ```
 
-- _parteB.c_ Corresponde al código para la parte B de la tarea.
+***
+
+- __parteB.c__ Corresponde al código para la parte B de la tarea.
 Compilar con:
 ```
 $ gcc parteB.c -lpthread -o parteB
@@ -53,7 +57,9 @@ Ejecutar con:
 $ ./parteB
 ```
 
-- _parteB_Modificado.c_ Corresponde al código para la parte B de la tarea, considerando el inciso 3.
+***
+
+- __parteB_Modificado.c__ Corresponde al código para la parte B de la tarea, considerando el inciso 3.
 Compilar con:
 ```
 $ gcc parteB_Modificado.c -lpthread -o parteB_mod
