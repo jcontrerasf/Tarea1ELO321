@@ -31,7 +31,7 @@
 #include <math.h>
 
 /*! \fn sucesion_Collatz (unsigned int n)
-    \brief Implimenta la susesión de Collatz
+    \brief Implementa la sucesión de Collatz
     \param n Número a operar
 */
 int sucesion_Collatz (unsigned int n);
