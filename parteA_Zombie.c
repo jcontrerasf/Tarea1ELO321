@@ -1,21 +1,13 @@
 //! ELO321 - Teoría de Sistemas Operativos, 2020-2
 /*!
-* @file   : parteA_Zombie.c 
+* @file   : parteA.c 
 * @author : Julio Contreras Fuica
 * @author : Cristian González Bustos
-* @date   : 06/11/2020
-* @brief  : Parte A de la Tarea 1, inciso 6
+* @date   : 01/11/2020
+* @brief  : Parte A de la Tarea 1 
 */
 
-// Compilar con gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA_Zombie.c -o parteA_Zombie -lrt
-
-//RECORDAR PASAR TABS A ESPACIOS
-//RECORDAR PASAR TABS A ESPACIOS
-//RECORDAR PASAR TABS A ESPACIOS
-//RECORDAR PASAR TABS A ESPACIOS
-//RECORDAR PASAR TABS A ESPACIOS
-//RECORDAR PASAR TABS A ESPACIOS
-//RECORDAR PASAR TABS A ESPACIOS
+// Compilar con gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA.c -o parteA -lrt
 
 #include <time.h>
 #include <stdio.h>
@@ -31,7 +23,7 @@
 #include <math.h>
 
 /*! \fn sucesion_Collatz (unsigned int n)
-    \brief Implimenta la susesión de Collatz
+    \brief Implementa la sucesión de Collatz
     \param n Número a operar
 */
 int sucesion_Collatz (unsigned int n);
@@ -62,7 +54,7 @@ int main (int argc, char *argv[]){
     //printf("El número %d sí es válido\n", n);
     pid1 = fork();
     if (pid1 < 0)
-        printf("Error al intentar crear el proceso hijo");
+        printf("Error al intentar crear el proceso hijo\n");
     else if (pid1 == 0){ //Proceso hijo
         time(&tiempo);
         printf("Hora de ejecución: %s", ctime(&tiempo));
@@ -93,7 +85,7 @@ int main (int argc, char *argv[]){
             sprintf(ptr,"%d\n", n);
             ptr += (int) floor(log10(n)) + 2;
             // https://stackoverflow.com/questions/1068849/how-do-i-determine-the-number-of-digits-of-an-integer-in-c
-            //+2 porque se le suma el '\n'
+            // +2 en vez de +1 porque se le suma el '\n'
         }
         exit(0); //Se termina el proceso hijo
     } else
