@@ -1,13 +1,13 @@
 //! ELO321 - Teoría de Sistemas Operativos, 2020-2
 /*!
-* @file   : parteA.c 
+* @file   : parteA_Zombie.c 
 * @author : Julio Contreras Fuica
 * @author : Cristian González Bustos
-* @date   : 01/11/2020
-* @brief  : Parte A de la Tarea 1 
+* @date   : 06/11/2020
+* @brief  : Parte A de la Tarea 1, inciso 6
 */
 
-// Compilar con gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA.c -o parteA -lrt
+// Compilar con gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA_Zombie.c -o parteA_Zombie -lrt
 
 //RECORDAR PASAR TABS A ESPACIOS
 //RECORDAR PASAR TABS A ESPACIOS
@@ -97,6 +97,7 @@ int main (int argc, char *argv[]){
         }
         exit(0); //Se termina el proceso hijo
     } else
+        sleep(10); //LÍNEA AÑADIDA
         wait(NULL); //Se espera a que termine el proceso hijo
         printf("%s",(char *)ptr); // Se imprime leyendo desde la memoria compartida
         //Se elimina la memoria compartida, si falla la operación, retorna -1
