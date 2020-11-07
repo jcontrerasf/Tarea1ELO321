@@ -99,9 +99,7 @@ int main (int argc, char *argv[]){
 
 int sucesion_Collatz (unsigned int n){
     if (n%2 == 0) //Es par
-    {
         return n/2;
-    } else { //Es impar
+     else //Es impar
         return 3*n+1;
-    }
 }
