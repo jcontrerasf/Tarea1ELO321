@@ -112,26 +112,3 @@ void* return_Max(void*p)
     printf("Thread ID: %u calculó máximo.\n", pthread_self() );
     pthread_exit(0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
