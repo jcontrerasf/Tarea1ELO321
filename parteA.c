@@ -9,14 +9,6 @@
 
 // Compilar con gcc -lm -std=c99 -Wall -Wextra -D_XOPEN_SOURCE=700 parteA.c -o parteA -lrt
 
-//RECORDAR PASAR TABS A ESPACIOS
-//RECORDAR PASAR TABS A ESPACIOS
-//RECORDAR PASAR TABS A ESPACIOS
-//RECORDAR PASAR TABS A ESPACIOS
-//RECORDAR PASAR TABS A ESPACIOS
-//RECORDAR PASAR TABS A ESPACIOS
-//RECORDAR PASAR TABS A ESPACIOS
-
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -62,7 +54,7 @@ int main (int argc, char *argv[]){
     //printf("El número %d sí es válido\n", n);
     pid1 = fork();
     if (pid1 < 0)
-        printf("Error al intentar crear el proceso hijo");
+        printf("Error al intentar crear el proceso hijo\n");
     else if (pid1 == 0){ //Proceso hijo
         time(&tiempo);
         printf("Hora de ejecución: %s", ctime(&tiempo));
@@ -93,7 +85,7 @@ int main (int argc, char *argv[]){
             sprintf(ptr,"%d\n", n);
             ptr += (int) floor(log10(n)) + 2;
             // https://stackoverflow.com/questions/1068849/how-do-i-determine-the-number-of-digits-of-an-integer-in-c
-            //+2 porque se le suma el '\n'
+            // +2 en vez de +1 porque se le suma el '\n'
         }
         exit(0); //Se termina el proceso hijo
     } else
