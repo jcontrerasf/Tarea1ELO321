@@ -50,8 +50,6 @@ int main (int argc, char *argv[]){
         printf("El número %d no es válido\n", n);
         return -1;
     }
-    //    } else { está bien haberlo quitado?????????????????????????????????????????????
-    //printf("El número %d sí es válido\n", n);
     pid1 = fork();
     if (pid1 < 0)
         printf("Error al intentar crear el proceso hijo\n");
@@ -68,10 +66,10 @@ int main (int argc, char *argv[]){
     //Se configura el tamaño de la memoria compartida
     ftruncate(shm_fd,SIZE);
 
-    //now map the shared memory segment in the address space of the process         TRADUCIR ESTO
+    //Se mapea la memoria compartida a la memoria virtual del proceso
     ptr = mmap(0,SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
     if (ptr == MAP_FAILED) {
-        printf("Map failed\n");
+        printf("Falla en mapeo de memoria\n");
         return -1;
     }
 
@@ -79,7 +77,6 @@ int main (int argc, char *argv[]){
     if (pid1 < 0)
         printf("Error al intentar crear el proceso hijo");
     else if (pid1 == 0){ //Proceso hijo
-        printf("Inicio en %d\n", n); //Se imprime el número inicial
         while(n > 1){
             n = sucesion_Collatz(n);
             sprintf(ptr,"%d\n", n);
@@ -91,6 +88,7 @@ int main (int argc, char *argv[]){
     } else
         sleep(10); //LÍNEA AÑADIDA
         wait(NULL); //Se espera a que termine el proceso hijo
+        printf("Inicio en %d\n", n); //Se imprime el número inicial
         printf("%s",(char *)ptr); // Se imprime leyendo desde la memoria compartida
         //Se elimina la memoria compartida, si falla la operación, retorna -1
         if (shm_unlink(name) == -1) {
