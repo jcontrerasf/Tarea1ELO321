@@ -40,7 +40,7 @@ void main() {
     time_t t;
     srand((unsigned) time(&t));
     
-    // Arreglo de 50 números aleatorios
+    // Arreglo de n (50) números aleatorios
     int i;
     for (i = 0; i < n; i++) {
       numArray[i] = rand() % 100 + 1;  // Generar números entre 1 y 100
