@@ -12,8 +12,7 @@
 #include <pthread.h>
 #include <stdio.h>
 
-#define n 50
-
+#define n 50    // Número de elementos del arreglo
 int numArray [n];
 
 /*! \fn return_Avg (void*)
@@ -32,27 +31,32 @@ void* return_Min(void*);
 void* return_Max(void*);
 
 void main() {
+    // Las variables de valores estadísticos ahora son locales
     float avg_value;
     int min_value;
     int max_value;
 
-
-    printf("\n");
+    printf("\n");  // Solo para que se vea más ordenado lo que imprime el programa
     time_t t;
     srand((unsigned) time(&t));
     
-    // arreglo de 50 números aleatorios
+    // Arreglo de 50 números aleatorios
     int i;
     for (i = 0; i < n; i++) {
-      numArray[i] = rand() % 100 + 1;  // generar numeros entre 1 y 100
-      printf("   %d  ", numArray[i]);
-      if ((i+1)%5 == 0 )
-          printf("\n");
+      numArray[i] = rand() % 100 + 1;  // Generar números entre 1 y 100
+      printf("   %d  ", numArray[i]);  // \
+      if ((i+1)%5 == 0 )               //  | Escribir los números en pantalla
+          printf("\n");                // /
     }
     
+    // Se generan dos arreglos locales que contienen el ID de los threads
+    // y los atributos de cada thread.
     pthread_t threadID [3];
     pthread_attr_t attr [3];
     
+    // -Se crea cada thread con el que se realiza una operación distinta.
+    // -En esta ocasión los pthread_create tienen argumentos correspondientes
+    //  a la variable *local* del valor que calculan.
     pthread_attr_init(&attr[0]);
     pthread_create(&threadID[0], &attr[0], return_Avg, &avg_value);
     
@@ -62,6 +66,7 @@ void main() {
     pthread_attr_init(&attr[2]);
     pthread_create(&threadID[2], &attr[2], return_Max, &max_value);
     
+    // Esperar a que cada thread termine de operar para que sean terminados
     for (i = 0; i < 3; i++)
       pthread_join(threadID[i], NULL);
 
@@ -69,10 +74,10 @@ void main() {
     printf("Valor mínimo: %d\n", min_value);
     printf("Valor máximo: %d\n", max_value);
     
-    printf("\n");
+    printf("\n");   // También para ayudar a ver más ordenada la impresión del programa
 }
 
-
+// Cálculo del valor promedio
 void* return_Avg(void *avg)
 {
     *(float*)avg = 0;
@@ -86,6 +91,7 @@ void* return_Avg(void *avg)
     pthread_exit(0);
 }
 
+// Cálculo del valor mínimo
 void* return_Min(void *min)
 {
     *(int*)min = 100;
@@ -100,6 +106,7 @@ void* return_Min(void *min)
     pthread_exit(0);
 }
 
+// Cálculo del valor máximo
 void* return_Max(void *max)
 {
     *(int*)max = 0;
